@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Testing.Domain.Entities.User>
+@{
+    ViewBag.Title = "AdminListClients";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+        <script src="~/Scripts/Design/studentSearchJS.js"></script>
+    </head>
+    <body>
+        <main class="container">
+            <div class="search-box">
+                <h2 class="text-center text-white">Clients.</h2>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5 class="text-white">Search clients: </h5>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="search" onkeyup="myFunction()" class="form-control" placeholder="Search clients...">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-list">
+
+                <table class="table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                First Name
+                            </th>
+                            <th>Last name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td><p><a class="btn" href="~/Admin/LockOutUsers/@item.UserId">Block</a></p></td>
+                            <td><p><a class="btn" href="~/Admin/UnLock/@item.UserId">Unblock</a></p></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </main>
+        <div style="height:190px;"></div>
+    </body>
+    </html>
+

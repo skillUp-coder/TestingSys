@@ -1,0 +1,9 @@
+﻿@model Testing.Domain.Entities.Course
+    <div class="thumbnail">
+        <h3><strong>@Model.CourseName course</strong></h3>
+        <h2>Complexity: @Model.Complexity</h2>
+
+            <span>An actual ACT Mathematics Test contains 60 questions to be answered in @Model.ExamTime minutes.</span>
+            <div>@Model.CourseText</div>
+            <p><a class="pull-right btn" href="~/Course/CourseList/@Model.CourseId">Pass the test</a></p>
+    </div>

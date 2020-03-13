@@ -1,0 +1,36 @@
+﻿@*@model IEnumerable<string>*@
+@using Testing.WebUI.Models.ViewModels
+@model NavigationViewModel
+
+@Html.ActionLink("Home", "Index", "Home", null,
+    new { @class = "btn btn-block btn-default btn-lg"})
+
+@foreach (var link in Model.categories)
+{
+    
+            @Html.RouteLink(link, new
+            {
+                controller = "Home",
+                action = "Index",
+                category = link,
+                page = 1,
+                SortOrder = "",
+                complexity =""
+
+            }, new
+            {
+                @class = "btn btn-block btn-default btn-lg " + (link == ViewBag.SelectedCategory ? "btn-primary" : ""),style="display:block;"
+            })
+
+    
+
+}
+
+
+
+
+
+
+
+
+

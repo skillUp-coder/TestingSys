@@ -1,0 +1,130 @@
+﻿@model   IEnumerable<Testing.Domain.Entities.Question>
+@{
+    ViewBag.Title = "CourseList";
+
+    
+    int min  = ViewBag.MinutsCounter;
+
+    
+}
+    @*<script src="~/Scripts/counter.js"></script>*@
+    <link href="~/Content/css/Counter.css" rel="stylesheet" />
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+
+
+        <div class="container">
+
+            <div class="col-md-3 fixed" style="float:right; ">
+                <div class="card-counter info" style="background-color:black;">
+                    <i class="fa fa-clock-o"></i>
+                    <span class="count-numbers" id="counter">@min:00</span>
+                    <span class="count-name">Time Remaining</span>
+                </div>
+            </div>
+
+            <span id="minRemaining"></span><span id="minRemaining"></span>
+
+            <div class="card-body">
+                <p class="card-text"><b>@ViewBag.ID</b></p>
+            </div>
+           
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                foreach (var question in Model)
+                {
+
+
+                    <div class="card-body">
+
+                        <p class="card-text"><b>@question.Title</b></p>
+                    </div>
+
+                    <div class="form-check">
+
+                    </div>
+                    <div class="form-check">
+
+                    </div>
+                    <div class="form-check">
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item mx-2">
+                            <label class="form-check-label" for="radio1">
+                                <input type="radio" class="form-check-input" name="@question.QuestionId" value="@question.Answer" />@question.Answer
+                            </label>
+                        </li>
+
+                        <li class="list-group-item mx-2">
+                            <label class="form-check-label" for="radio2">
+                                <input type="radio" class="form-check-input" name="@question.QuestionId" value="@question.ChoiceOne" />@question.ChoiceOne
+                            </label>
+                        </li>
+                        <li class="list-group-item mx-2">
+                            <label class="form-check-label" for="radio2">
+                                <input type="radio" class="form-check-input" name="@question.QuestionId" value="@question.ChoiceTwo" />@question.ChoiceTwo
+                            </label>
+                        </li>
+                        <li class="list-group-item mx-2">
+                            <label class="form-check-label" for="radio2">
+                                <input type="radio" class="form-check-input" name="@question.QuestionId" value="@question.ChoiceThree" />@question.ChoiceThree
+                            </label>
+                        </li>
+                        <li class="list-group-item mx-2">
+                            <label class="form-check-label" for="radio2">
+                                <input type="radio" class="form-check-input" name="@question.QuestionId" value="@question.ChoiceFour" />@question.ChoiceFour
+                            </label>
+                        </li>
+
+                    </ul>
+
+
+                }
+                <button type="submit" id="btnFinishExam" class="btn btn-primary">Send</button>
+            }
+        </div>
+
+
+
+        <script>
+                                          
+
+
+            var second = 59, minute = @min, hour = 0;
+            var interval = null;
+            function show() {
+            if (second != 0) second = second - 1;
+            else {
+                if (minute != 0) {
+                minute = minute - 1;
+                second = 59;
+            }
+            else {
+                    alert("Süreniz doldu!");
+                    var btn = $("#btnFinishExam");
+                    btn[0].click();
+                    clearInterval(interval);
+                }
+
+            }
+                $("#counter").html(hour + " : " + minute + " : " + second);
+}
+
+$(document).ready(function () {
+    
+    var datatime = $("#counter");
+    $("#counter").html("");
+    interval = setInterval(show, 1000);
+});
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,95 @@
+﻿
+
+
+@{
+    Layout = null;
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr.min.js" rel="stylesheet" />
+    <link href="~/Scripts/Design/css/loginForm.css" rel="stylesheet" />
+    <link href="~/Scripts/Design/css/form.css" rel="stylesheet" />
+</head>
+<body>
+    <main>
+        <div class="sidenav">
+            <img class="rounded mx-auto d-block" src="~/Content/img/study_5.jpg" height="350" style="color: black" />
+            <h2 class="text-center " style="color:white">Register</h2>
+
+        </div>
+        <div class="main">
+            <div class="col-md-4 col-sm-7" style="margin-left:50px;">
+                <div class="login-form">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="">
+                            <h4>Create a new account.</h4>
+                            <hr />
+
+                            <div class="form-label-group "> 
+                                <input id="firstname" class="form-control" maxlength="50" placeholder="enter your first name..." name="firstname" required autofocus>
+                            </div>
+                            
+                            <div class="form-label-group ">
+                                <input id="lastname" class="form-control" maxlength="50" placeholder="enter your last name..." name="lastname" required autofocus>
+                            </div>
+                            
+                            <div class="form-label-group ">
+                                <input id="username" class="form-control" maxlength="50" placeholder="Username..." name="username" required autofocus>
+                            </div>
+                            
+                            <div class="form-label-group">
+                                <input type="password" id="password" class="form-control" maxlength="10" placeholder="Password..." name="password" required />
+                            </div>
+                       
+                            <div class="form-label-group">
+                                <input type="password" id="confirmpassword" class="form-control" maxlength="10" placeholder="Confirm password..." name="confirmpassword" required />
+
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="btn btn-primary btn-block">
+                                <input type="submit" value="Register" class="btn btn-primary btn-block" />
+                            </div>
+                        </div>
+                        <p>
+                            @Html.ActionLink("Return to the entrance", "Login")
+                        </p>
+
+                    }
+                </div>
+            </div>
+
+        </div>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/toastr.min.js"></script>
+        <script src="~/Scripts/toastr.config.js"></script>
+        @ToastrHelper.ProcessToastrs()
+    </main>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/toastr.config.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

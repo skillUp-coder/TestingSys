@@ -1,0 +1,104 @@
+﻿@using System.Security.Claims
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="~/Content/css/style_index.css" rel="stylesheet" />
+</head>
+<body id="MyPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    
+        <header class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Testing", "Index", "Home", new { area = "" }, new { @class = "navbar-brand " })
+                    
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <p style="color:white; margin-top: 15px;">Hello @User.Identity.Name</p>
+                                </li>
+                                <li>
+                                    <input class="btn" type="submit" value="Logout" style="margin-top:5px;" />
+                                </li>
+                            </ul>
+                        }
+                    }
+
+
+                </div>
+            </div>
+
+
+            <!--TODO
+            <div>
+                <div class="navbar-header ">
+                    @Html.ActionLink("Testing", "Index", "Home", new { area = "" }, new { @class = "navbar-brand " })
+                </div>
+                <div class="navbar-collapse collapse pull-right">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <ul>
+                                <li>
+                                    <p style="color:white;">Hello @User.Identity.Name</p>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Logout" />
+                                </li>
+                            </ul>
+                        }
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav ">
+                            <li>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        </ul>
+
+                    }
+                </div>
+            </div>
+                -->
+        </header>
+
+
+
+        <main class="row panel">
+
+            @RenderBody()
+
+        </main>
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Testing</p>
+        </footer>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

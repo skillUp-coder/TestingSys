@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Testing.Domain.Entities.Visitor>
+
+@{
+    ViewBag.Title = "Logger";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <main class="container">
+            <h2>Logger.</h2>
+
+            
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ip)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.ExceotionMessage)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.ControllerName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.ActionName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExceotionMessage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ControllerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                
+            </tr>
+                }
+
+            </table>
+        </main>
+        <div style="height:230px;"></div>
+    </body>
+    </html>

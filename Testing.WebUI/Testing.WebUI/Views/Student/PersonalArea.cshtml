@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Testing.Domain.Entities.User>
+@{
+    ViewBag.Title = "PersonalArea";
+}
+
+    <main >
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Personal Area</h1>
+                <p class="lead text-muted">Welcome to the system where you can increase your level of training and effectiveness. <b>@HttpContext.Current.User.Identity.Name!</b></p>
+                <p>
+                    <a href="~/Home/Index">Take an Exam</a>
+                </p>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name:</th>
+                                <th>Last name:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>@item.FirstName</th>
+                                    <th>@item.LastName</th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </section>
+    </main>

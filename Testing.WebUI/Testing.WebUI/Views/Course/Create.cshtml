@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+    
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <link href="~/Scripts/Design/css/mainForm.css" rel="stylesheet" />
+        <link href="~/Scripts/bootstrap.min.js" rel="stylesheet" />
+        <link href="~/Scripts/jquery-3.4.1.min.js" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row my-4">
+                <div class="col-lg-12 order-lg-2">
+                    <ul class="nav nav-tabs ">
+                        <li class="nav-item">
+                            <a href=""  data-target="#addQuestion" data-toggle="tab" class="nav-link active">Add Question</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" data-target="#addCategory" data-toggle="tab" class="nav-link">Add Category</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content py-4">
+                        <div class="tab-pane active" id="addQuestion">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @using (Html.BeginForm("Create", "Course", FormMethod.Post,
+                                    new { enctype = "multipart/form-data" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div id="contact-form" class="form-container" data-form-container="">
+                                            <div class="container">
+                                                <h2 class="text-center">Add Question</h2>
+                                            </div>
+                                            <div class="input-container">
+                                                <div class="row">
+                                                    <span class="req-input">
+                                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Enter the Question."> </span>
+                                                        <input type="text" name="title" maxlength="250" placeholder="Enter the Question ..." required>
+                                                    </span>
+                                                </div>
+
+                                                <div class="row" id="inputPad">
+                                                    @Html.DropDownList("Categories", null, new { @class = "form-control" })
+                                                </div>
+
+                                                <div class="row" id="inputPad">
+                                                    <span class="req-input">
+                                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Enter the Answer ..."> </span>
+                                                        <input type="text" name="answer" maxlength="250" placeholder="Enter the Answer ..." required>
+                                                    </span>
+                                                </div>
+                                                
+                                                
+                                                <div class="row">
+                                                    <span class="req-input">
+                                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Enter First Choice"> </span>
+                                                        <input type="text" name="choiceOne" maxlength="250" placeholder="Enter First Choice..." required>
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="req-input">
+                                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Enter the second option"> </span>
+                                                        <input type="text" name="choiceTwo" maxlength="250" placeholder="Enter the second option..." required>
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="req-input">
+                                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Enter the third option"> </span>
+                                                        <input type="text" name="choiceThree" maxlength="250" placeholder="Enter the third option..." required>
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span class="req-input">
+                                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Enter Fourth option"> </span>
+                                                        <input type="text" name="choiceFour" maxlength="250" placeholder="Enter Fourth  option..." required>
+                                                    </span>
+                                                </div>
+                                                <div class="row submit-row">
+                                                    <button type="submit" class="btn">Add Question</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+
+                            </div>
+                            <!--/row-->
+                        </div>
+
+                        <div class="tab-pane" id="addCategory">
+
+                            <div class="form-group row">
+
+                                <div class="col-lg-12">
+                                    @using (Html.BeginForm("CreateCategory", "Course"))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div id="contact-form" class="form-container" data-form-container="">
+                                            <div class="container">
+                                                <h2 class="text-center">Add Category</h2>
+                                            </div>
+                                            <div class="input-container">
+                                                <div class="row">
+                                                    <span class="req-input">
+
+                                                        <span class="input-status" data-toggle="tooltip" data-placement="top" title="Enter Category Name..."> </span>
+                                                        <input type="text" name="name" placeholder="Category Name...">
+                                                    </span>
+                                                </div>
+                                                <div class="row">
+                                                    <span style=" float:left;">
+                                                        <span  data-toggle="tooltip" data-placement="top" title="Enter the Time..."> </span>
+                                                        <input type="number" name="time" minlength ="0" maxlength="60" placeholder="Enter the Time..." required>
+                                                    </span>
+                                                </div>
+                
+                                                <div class="row" id="inputPad">
+                                                    @Html.DropDownList("Complaxities", null,new { @class = "form-control" })
+                                                </div>
+                                                <div class="row submit-row">
+                                                    <button type="submit" class="btn">Add Category</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                                <br />
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+    </html>

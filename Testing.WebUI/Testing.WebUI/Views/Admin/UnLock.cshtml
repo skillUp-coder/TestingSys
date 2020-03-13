@@ -1,0 +1,30 @@
+﻿@model Testing.Domain.Entities.User
+@{
+    ViewBag.Title = "UnLock";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <main class="container">
+        <h2>Unblock Client.</h2>
+        <hr />
+        <p>You really want to unblock a user.</p>
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                <p>@Html.HiddenFor(x => x.FirstName)</p>
+                <p>@Html.HiddenFor(x => x.LastName)</p>
+                <p>@Html.HiddenFor(x => x.Email)</p>
+                <p>@Html.HiddenFor(x => x.Password)</p>
+                <input class="btn" type="submit" name="name" value="Unblock" />
+
+            </fieldset>
+        }
+    </main>
+    <div style="height: 210px;"></div>
+</body>
+</html>
+

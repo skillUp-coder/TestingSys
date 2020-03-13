@@ -1,0 +1,128 @@
+﻿
+
+@{
+    ViewBag.Title = "StatisticList";
+
+    var _count = ViewBag._Count;
+}
+
+<script src="~/Scripts/Design/loader.js"></script>
+<script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+
+
+
+
+
+<div class="container">
+    @Html.ActionLink("You can view personal data.", "PersonalArea", "Student", new { area = "" }, new { @class = "navbar-brand " })
+    <br />
+    <br />
+    <div class="row my-4">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#lastExamstatistic" data-toggle="tab" class="nav-link active">Final Exam Chart</a>
+                </li>
+
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="lastExamstatistic">
+                    <h5 class="mb-3">Exam Graphs</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box-body">
+                                <table class="columns">
+                                    <tr>
+                                        <td>
+
+                                            <div class="text_area"><h3>Your final test completed at @ViewBag._Res percent.</h3></div>
+                                            <div class="col-md-6" id="areachart_div"></div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <!--/row-->
+                </div>
+
+                <div class="tab-pane" id="categoryStatistic">
+
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Exam Dates</label>
+
+                        <div class="col-lg-9">
+                            @Html.DropDownList("ExamTimes", null, "", new { @class = "form-control input-lg", id = "examTimes" })
+                        </div>
+                        <br />
+                        <table class="columns">
+                            <tr>
+                                <td>
+                                    <div class="col-md-6" id="piechart_div"></div>
+
+
+                                </td>
+
+                            </tr>
+                        </table>
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    google.charts.load('current', {
+        packages: ['corechart']
+    }).then(function () {
+        $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("LastFreeExam", "Statistic")',
+                success: function (result) {
+                    console.log(result);
+                    drawChart(result);
+                }
+            });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Date');
+            data.addColumn('number', 'Point');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                var date = new Date(parseInt(obj.Date))
+                dataArray.push([obj.Date.toString(),parseInt(obj.Point)]);
+            });
+            data.addRows(dataArray);
+            var areachart_options = {
+                title: 'Student Performance',
+                width: 800,
+                height: 600,
+                is3D: true,
+                animation:{
+                    duration: 100,
+                    easing: 'out',
+                },
+                vAxis: {minValue:0, maxValue:@_count}
+            };
+            var areachart = new google.visualization.AreaChart(document.getElementById('areachart_div'));
+            areachart.draw(data, areachart_options);
+
+            
+        }
+    }); 
+</script>

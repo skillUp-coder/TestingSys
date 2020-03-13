@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Testing.Domain.Entities.User>
+@{
+    ViewBag.Title = "ManagerIndex";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <main class="container">
+            <h1>Hi, here you can catch exceptions that may occur.</h1>
+            <hr />
+            <br />
+            <h2>Clients in the system.</h2>
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th>
+                            Username:
+                        </th>
+                        <th>
+                            First Name:
+                        </th>
+                        <th>Last name:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(x => item.Email)</td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </main>
+        <div style="height:150px;"></div>
+    </body>
+    </html>
+

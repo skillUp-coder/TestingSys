@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Testing.Domain.Entities.Course>
+
+@{
+    ViewBag.Title = "DeleteCource";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <main class="container">
+
+            <h2>DeleteCource</h2>
+            
+                @foreach (var item in Model)
+                {
+                    @Html.Partial("DeleteSummary", item)
+                }
+            
+
+        </main>
+    </body>
+    </html>
+
+
